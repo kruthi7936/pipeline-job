@@ -1,11 +1,10 @@
 pipeline {
-	agent { label 'master' } 
+	agent any
 	stages {
-		stage('Both build and test') {
-			parallel {
-				stage('Build') { 
-					steps {
-						sh 'sleep 15; echo "This is a Build stage"'
+		stage('Build') {
+		
+				steps {
+						sh 'sleep 15; echo "This is a Build stage"; echo "this is to run the single line command"'
 					}
 				}
 				
@@ -16,12 +15,15 @@ pipeline {
 							echo "This is a Test stage"
 							echo "let me try this"
 
+
+							echo "using this we can run multiple commands"
+
 						'''	
 					
 					}
 				}
-			} 
-		}
+			
+		
 		stage('Deploy'){
 			steps {
 				sh '''
